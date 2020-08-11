@@ -6,4 +6,14 @@
     <RootNamespace>TurnUp_AutomationTesting</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Selenium.Support" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Tests\" />
+  </ItemGroup>
+
 </Project>
