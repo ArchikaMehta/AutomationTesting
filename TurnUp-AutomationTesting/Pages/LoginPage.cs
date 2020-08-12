@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,8 @@ namespace TurnUp_AutomationTesting.Pages
     {
         public void Login(IWebDriver driver)
         {
+            try 
+            { 
             //Launcing application URL
             driver.Navigate().GoToUrl("http://horse-dev.azurewebsites.net/Account/Login?ReturnUrl=%2f");
 
@@ -21,6 +24,11 @@ namespace TurnUp_AutomationTesting.Pages
 
             //Click login 
             driver.FindElement(By.XPath("//*[@id='loginForm']/form/div[3]/input[1]")).Click();
+            }
+            catch(Exception ex)
+            {
+                Assert.Fail("Login page did not load successfully and user is unable to login", ex.Message);
+            }
 
          //Login Validation
 
@@ -30,11 +38,11 @@ namespace TurnUp_AutomationTesting.Pages
             //Validate welcome message
             if (helloHari.Text == "Hello hari!")
             {
-                Console.WriteLine("Logged In successfully, test passed");
+                Assert.Pass("Logged In successfully, test passed");
             }
             else
             {
-                Console.WriteLine("Login failed, test failed");
+                Assert.Fail("Login failed, test failed");
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +12,24 @@ namespace TurnUp_AutomationTesting.Pages
     {
         String des;
         //Declare and initialize a local variable for passing it as row index in XPath to select the created record for editing
-        int index =999;
+        int index = 999;
 
         public void CreateNew(IWebDriver driver)
         {
          //Creation of new time or material record
 
+            try
+            { 
             //Click on create new button
             driver.FindElement(By.CssSelector("a.btn.btn-primary")).Click();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Unable to navigate to Create new Time and Material page", ex.Message);
+            }
 
+            try 
+            { 
             //Click on dropdown
             driver.FindElement(By.CssSelector("span.k-icon.k-i-arrow-s")).Click();
 
@@ -48,6 +58,11 @@ namespace TurnUp_AutomationTesting.Pages
 
             //Save the record
             driver.FindElement(By.XPath("//*[@id='SaveButton']")).Click();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("New record creation page did not load successfully", ex.Message);
+            }
 
             //Wait for last page button to get enabled
             Thread.Sleep(3000);
@@ -69,43 +84,68 @@ namespace TurnUp_AutomationTesting.Pages
                 //Comparing coloum data with the entered data for validation
                 if (colData == des)
                 {
-                    Console.WriteLine("New record created sucessfully, test passed");
-
                     //Assigning the location of element where enetered data found to the variable. This will be used in edit test case
                     index = i + 1;
+                           
+                    Assert.Pass("New record created sucessfully, test passed");
 
                     //Breaking the loop when enetered data is found
                     break;
                 }
                 else if ((i + 1) >= colDescriptions.Count)
                 {
-                    Console.WriteLine("New record creation failed, test failed");
+                    Assert.Fail("New record creation failed, test failed");
                 }
-            }
-
+            }          
         }
 
         public void Editexisting(IWebDriver driver)
         {
-          //Editing the already created record
+         //Editing the already created record
 
-            //Click on edit button
-            driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[" + index + "]/td[5]/a[1]")).Click();
+            //Wait for last page button to get enabled
+            Thread.Sleep(3000);
+            try
+            { 
+                //Click on button to go to the last page
+                driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span")).Click();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Unable to click on the last page button", ex.Message);
+            }
 
+            try
+            {
+                //Click on edit button
+                driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[" + index + "]/td[5]/a[1]")).Click();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Unable to click on the edit button", ex.Message);
+            }
+                        
             //New price 
             String editprice = ("2050");
 
-            //Click on price field to enable it
-            driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]")).Click();
+            try
+            {
+                //Click on price field to enable it
+                driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]")).Click();
 
-            //Clear the contents of price field
-            driver.FindElement(By.Id("Price")).Clear();
+                //Clear the contents of price field
+                driver.FindElement(By.Id("Price")).Clear();
 
-            //Enter new price
-            driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]")).SendKeys(editprice);
+                //Enter new price
+                driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]")).SendKeys(editprice);
 
-            //Save the record with edited price
-            driver.FindElement(By.XPath("//*[@id='SaveButton']")).Click();
+                //Save the record with edited price
+                driver.FindElement(By.XPath("//*[@id='SaveButton']")).Click();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Edit record page did not load successfully", ex.Message);
+            }
 
             //Wait for last page button to get enabled
             Thread.Sleep(3000);
@@ -139,26 +179,45 @@ namespace TurnUp_AutomationTesting.Pages
                     //Applying assertion to validate the price is edited or not
                     if (pricedited.Contains(editprice))
                     {
-                        Console.WriteLine("Record edited successfully, test passed");
+                        Assert.Pass("Record edited successfully, test passed");
                     }
                     else
                     {
-                        Console.WriteLine("Record edit failed, test failed");
+                        Assert.Fail("Record edit failed, test failed");
                     }
                 }
             }
-
         }
 
         public void Deleteexisting(IWebDriver driver)
         {
          //Testing the delete record functionality
 
-            //Click on delete button for the edited record
-            driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[" + index + "]/td[5]/a[2]")).Click();
+            //Wait for last page button to get enabled
+            Thread.Sleep(3000);
 
-            //Click Ok on alert message to confirm deletion
-            driver.SwitchTo().Alert().Accept();
+            try
+            {
+                //Click on button to go to the last page
+                driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span")).Click();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Unable to click on the last page button", ex.Message);
+            }
+
+            try
+            { 
+                //Click on delete button for the edited record
+                driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[" + index + "]/td[5]/a[2]")).Click();
+
+                //Click Ok on alert message to confirm deletion
+                driver.SwitchTo().Alert().Accept();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Unable to delete record", ex.Message);
+            }
 
             //Wait for page to reload
             Thread.Sleep(3000);
@@ -177,16 +236,14 @@ namespace TurnUp_AutomationTesting.Pages
                 //Comparing coloum data with the entered data for validation
                 if (colDatadelete == des)
                 {
-                    Console.WriteLine("Record deletion failed, test failed");
+                    Assert.Fail("Record deletion failed, test failed");
                 }
 
-                else if ((k + 1) >= colDatadelete.Count())
+                else if ((k + 1) >= colDescriptionsdelete.Count())
                 {
-                    Console.WriteLine("Record deleted sucessfully, test passed");
+                    Assert.Pass("Record deleted sucessfully, test passed");
                 }
             }
-
         }
     }
-
 }
