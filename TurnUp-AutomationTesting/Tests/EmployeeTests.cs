@@ -9,8 +9,8 @@ using TurnUp_AutomationTesting.Pages;
 
 namespace TurnUp_AutomationTesting.Tests
 {
-   // [TestFixture]
-   // [Parallelizable]
+   [TestFixture]
+   [Parallelizable]
     class EmployeeTests: CommonDrivers
     {
         [Test]
