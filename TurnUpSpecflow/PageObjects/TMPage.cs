@@ -106,7 +106,7 @@ namespace TurnUpSpecflow.PageObjects
                     }
                     else if ((i + 1) >= colDescriptions.Count)
                     {
-                        Assert.Fail("New record creation failed, test failed");
+                        Assert.Fail("New record creation failed, test failed.");
                     }
                 }
             }
