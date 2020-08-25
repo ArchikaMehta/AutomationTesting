@@ -24,50 +24,34 @@ namespace TurnUpSpecflow.PageObjects
         {
             //Creation of new time or material record
 
-            try
-            {
+            
                 //Click on create new button
                 _driver.FindElement(By.CssSelector("a.btn.btn-primary")).Click();
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail("Unable to navigate to Create new Time and Material page", ex.Message);
-            }
+            
         }
 
         internal void DropDown()
         {
-            try
-            {
+            
                 //Click on dropdown
                 _driver.FindElement(By.CssSelector("span.k-icon.k-i-arrow-s")).Click();
 
                 //Wait for dropdown to load values
                 Thread.Sleep(2000);
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail("Dropdown did not load successfully", ex.Message);
-            }
+            
         }
 
         internal void TypeCode()
         {
-            try 
-            {
+            
             //Seleting TypeCode time from dropdown
             _driver.FindElement(By.XPath("//*[@id='TypeCode_listbox']/li[2]")).Click();
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail("Dropdown value did not load successfully", ex.Message);
-            }
+            
         }
 
         internal void RecordData()
         {
-            try
-            {
+            
                 //Entering data (code, description and price per unit) for new time record creation
                 _driver.FindElement(By.CssSelector("input#Code.text-box.single-line")).SendKeys("Aug");
 
@@ -87,11 +71,7 @@ namespace TurnUpSpecflow.PageObjects
 
                 //Save the record
                 _driver.FindElement(By.XPath("//*[@id='SaveButton']")).Click();
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail("New record creation page did not load successfully", ex.Message);
-            }
+            
         }
 
         internal void ValidateCreateNew()

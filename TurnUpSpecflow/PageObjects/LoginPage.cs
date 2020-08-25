@@ -39,7 +39,7 @@ namespace TurnUpSpecflow.PageObjects
             //Find element to fetch welcome message
             IWebElement helloHari = _driver.FindElement(By.XPath("//*[@id='logoutForm']/ul/li/a"));
 
-            Assert.IsTrue(helloHari.Text.Contains("Hello hari"));            
-        }             
+            Assert.IsTrue(helloHari.Text.Contains("Hello hari"));
+        }
     }
 }

@@ -6,7 +6,7 @@ When I login to the TurnUp Portal
 And I click option "Time & Materials" under Administration Drop Down on the Main Page
 
 
-Scenario: Verify user navigates to TM or Employee Page
+Scenario: Verify a new TM record is created
 
 Given I am on "Time and Materials" page
 When I clicked on Create New button 

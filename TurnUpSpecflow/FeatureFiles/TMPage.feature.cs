@@ -90,12 +90,12 @@ testRunner.And("I click option \"Time & Materials\" under Administration Drop Do
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify user navigates to TM or Employee Page")]
-        public virtual void VerifyUserNavigatesToTMOrEmployeePage()
+        [NUnit.Framework.DescriptionAttribute("Verify a new TM record is created")]
+        public virtual void VerifyANewTMRecordIsCreated()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify user navigates to TM or Employee Page", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify a new TM record is created", null, tagsOfScenario, argumentsOfScenario);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
