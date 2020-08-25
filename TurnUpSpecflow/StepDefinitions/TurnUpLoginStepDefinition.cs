@@ -21,7 +21,7 @@ namespace TurnUpSpecflow.StepDefinitions
         [Given(@"I navigate to the TurnUp Portal")]
         public void GivenINavigateToTheTurnUpPortal()
         {
-            var url = "http://horse-dev.azurewebsites.net/Account/Login?ReturnUrl=%2f";
+            var url = "https://horse-dev.azurewebsites.net/Account/Login?ReturnUrl=%2f";
 
             loginPage.Navigate(url);
 
