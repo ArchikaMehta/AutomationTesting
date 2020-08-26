@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurnUp-AutomationTesting", "TurnUp-AutomationTesting\TurnUp-AutomationTesting.csproj", "{88BD1AE1-3E5B-4044-8238-BB908ADF5A38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurnUpSpecflow", "TurnUpSpecflow\TurnUpSpecflow.csproj", "{1D375313-9DF9-4B0A-A95C-D239D4CF9CE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurnUpSpecflow", "TurnUpSpecflow\TurnUpSpecflow.csproj", "{1D375313-9DF9-4B0A-A95C-D239D4CF9CE1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C91CEBCD-9630-4FD8-AB0C-0864303BAD13}"
+	ProjectSection(SolutionItems) = preProject
+		test.runsettings = test.runsettings
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

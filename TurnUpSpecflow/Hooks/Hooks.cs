@@ -58,7 +58,7 @@ namespace TurnUpSpecflow.Hooks
 
                 try
                 {
-                    _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
+                    _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
                     _driver.Manage().Cookies.DeleteAllCookies();
                     _driver.Manage().Window.Maximize();
                     _objectContainer.RegisterInstanceAs(_driver);

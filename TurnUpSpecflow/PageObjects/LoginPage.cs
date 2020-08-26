@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -37,7 +38,12 @@ namespace TurnUpSpecflow.PageObjects
             //Login Validation
 
             //Find element to fetch welcome message
-            IWebElement helloHari = _driver.FindElement(By.XPath("//*[@id='logoutForm']/ul/li/a"));
+            
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            IWebElement helloHari = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//*[@id='logoutForm']/ul/li/a")));
+
+
+           // IWebElement helloHari = _driver.FindElement(By.XPath("//*[@id='logoutForm']/ul/li/a"));
 
             Assert.IsTrue(helloHari.Text.Contains("Hello hari"));
         }
