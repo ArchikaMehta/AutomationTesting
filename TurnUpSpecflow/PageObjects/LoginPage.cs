@@ -39,8 +39,8 @@ namespace TurnUpSpecflow.PageObjects
 
             //Find element to fetch welcome message
             
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(60));
-            IWebElement helloHari = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//*[@id='logoutForm']/ul/li/a")));
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(120));
+            IWebElement helloHari = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='logoutForm']/ul/li/a")));
 
 
            // IWebElement helloHari = _driver.FindElement(By.XPath("//*[@id='logoutForm']/ul/li/a"));
