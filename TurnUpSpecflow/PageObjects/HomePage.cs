@@ -8,18 +8,17 @@ namespace TurnUpSpecflow.PageObjects
 {
     internal class HomePage : LoginPage
     {
-        // private IWebDriver driver;
+        //Created constructor for dependency injection
         public HomePage(IWebDriver driver) : base(driver)
         {
 
         }
 
-
         internal void NavigateTM()
         {
             try
             {
-                //Click dropdown and select Time & material 
+                //Click dropdown and selecting Time from Time & material option
                 _driver.FindElement(By.CssSelector("a.dropdown-toggle")).Click();
                 _driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a")).Click();
             }
@@ -31,6 +30,7 @@ namespace TurnUpSpecflow.PageObjects
 
         internal void ValidateTM()
         {
+            //Validating if Create new button is available on the page or not
             IWebElement createnew = _driver.FindElement(By.CssSelector("a.btn.btn-primary"));
 
             Assert.IsTrue(createnew.Text.Contains("Create New"));

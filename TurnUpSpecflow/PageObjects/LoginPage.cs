@@ -9,6 +9,7 @@ namespace TurnUpSpecflow.PageObjects
 {
     internal class LoginPage : BasePage
     {
+        //Created constructor for dependency injection
         public LoginPage(IWebDriver driver) : base(driver)
         {
 
@@ -18,7 +19,7 @@ namespace TurnUpSpecflow.PageObjects
         {
             try
             {
-             //Login Flow
+        //Login Flow
 
                 //Enter username & password
                 _driver.FindElement(By.Id("UserName")).SendKeys("hari");
@@ -31,19 +32,16 @@ namespace TurnUpSpecflow.PageObjects
             {
                 Assert.Fail("Login page did not load successfully and user is unable to login", ex.Message);
             }
-        }
+         }
 
         internal void ValidateLogin()
         {
-            //Login Validation
+        //Login Validation
 
             //Find element to fetch welcome message
             
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(120));
             IWebElement helloHari = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='logoutForm']/ul/li/a")));
-
-
-           // IWebElement helloHari = _driver.FindElement(By.XPath("//*[@id='logoutForm']/ul/li/a"));
 
             Assert.IsTrue(helloHari.Text.Contains("Hello hari"));
         }
