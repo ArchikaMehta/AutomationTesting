@@ -78,10 +78,10 @@ namespace TurnUpSpecflow.FeatureFiles
 #line 3
 #line hidden
 #line 4
-testRunner.Given("I navigate to the TurnUp Portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("User navigated to the TurnUp Portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 5
-testRunner.When("I login to the TurnUp Portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("User login to the TurnUp Portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
         }
         
@@ -119,11 +119,11 @@ this.FeatureBackground();
 testRunner.Given("User is on Home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
-testRunner.When("I click option \"Time & Materials\" under Administration Drop Down on the Main Page" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("User clicks option \"Time & Materials\" under Administration Drop Down on the Main " +
+                        "Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
-testRunner.Then("I verify I navigated to TM Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("User verifies that he is navigated to TM Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
