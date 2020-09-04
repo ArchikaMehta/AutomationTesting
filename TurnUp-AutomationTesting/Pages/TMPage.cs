@@ -1,10 +1,13 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using TurnUp_AutomationTesting.Helpers;
 
 namespace TurnUp_AutomationTesting.Pages
 {
@@ -34,7 +37,7 @@ namespace TurnUp_AutomationTesting.Pages
             driver.FindElement(By.CssSelector("span.k-icon.k-i-arrow-s")).Click();
 
             //Wait for dropdown to load values
-            Thread.Sleep(2000);
+            WaitHelpersTurnUp.WaitClickable(driver, "XPath", "//*[@id='TypeCode_listbox']/li[2]", 3);
 
             //Seleting TypeCode time from dropdown
             driver.FindElement(By.XPath("//*[@id='TypeCode_listbox']/li[2]")).Click();
@@ -65,12 +68,13 @@ namespace TurnUp_AutomationTesting.Pages
             }
 
             //Wait for last page button to get enabled
-            Thread.Sleep(3000);
+            WaitHelpersTurnUp.WaitClickable(driver, "CssSelector", "span.k-icon.k-i-seek-e", 15);
 
-         //Validation of create new time or material record
+            //Validation of create new time or material record
 
             //Click on button to go to the last page
-            driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span")).Click();
+            driver.FindElement(By.CssSelector("span.k-icon.k-i-seek-e")).Click();
+            driver.FindElement(By.CssSelector("span.k-icon.k-i-seek-e")).Click();
 
             //Create a collection of elements of description column
             IReadOnlyCollection<IWebElement> colDescriptions = driver.FindElements(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr/td[3]"));
@@ -101,14 +105,15 @@ namespace TurnUp_AutomationTesting.Pages
 
         public void Editexisting(IWebDriver driver)
         {
-         //Editing the already created record
+            //Editing the already created record
 
             //Wait for last page button to get enabled
-            Thread.Sleep(3000);
+            WaitHelpersTurnUp.WaitClickable(driver, "CssSelector", "span.k-icon.k-i-seek-e", 15);
+
             try
             { 
                 //Click on button to go to the last page
-                driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span")).Click();
+                driver.FindElement(By.CssSelector("span.k-icon.k-i-seek-e")).Click();
             }
             catch (Exception ex)
             {
@@ -117,6 +122,8 @@ namespace TurnUp_AutomationTesting.Pages
 
             try
             {
+                WaitHelpersTurnUp.WaitClickable(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[" + index + "]/td[5]/a[1]", 15);
+
                 //Click on edit button
                 driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[" + index + "]/td[5]/a[1]")).Click();
             }
@@ -148,9 +155,9 @@ namespace TurnUp_AutomationTesting.Pages
             }
 
             //Wait for last page button to get enabled
-            Thread.Sleep(3000);
+            WaitHelpersTurnUp.WaitClickable(driver, "CssSelector", "span.k-icon.k-i-seek-e", 15);
 
-         //Validate Edited record
+            //Validate Edited record
 
             //Click on button to go to the last page
             driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span")).Click();
@@ -191,15 +198,15 @@ namespace TurnUp_AutomationTesting.Pages
 
         public void Deleteexisting(IWebDriver driver)
         {
-         //Testing the delete record functionality
+            //Testing the delete record functionality
 
             //Wait for last page button to get enabled
-            Thread.Sleep(3000);
+            WaitHelpersTurnUp.WaitClickable(driver, "CssSelector", "span.k-icon.k-i-seek-e", 5);
 
             try
             {
                 //Click on button to go to the last page
-                driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span")).Click();
+                driver.FindElement(By.CssSelector("span.k-icon.k-i-seek-e")).Click();
             }
             catch (Exception ex)
             {
@@ -207,7 +214,9 @@ namespace TurnUp_AutomationTesting.Pages
             }
 
             try
-            { 
+            {
+                WaitHelpersTurnUp.WaitClickable(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[" + index + "]/td[5]/a[2]", 15);
+
                 //Click on delete button for the edited record
                 driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[" + index + "]/td[5]/a[2]")).Click();
 
@@ -220,12 +229,12 @@ namespace TurnUp_AutomationTesting.Pages
             }
 
             //Wait for page to reload
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
 
             //Validating record deletion
 
             //Create a collection of elements of description column
-            IReadOnlyCollection<IWebElement> colDescriptionsdelete = driver.FindElements(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr/td[3]"));
+            IReadOnlyCollection <IWebElement> colDescriptionsdelete = driver.FindElements(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr/td[3]"));
 
             //Iterating over the collection to fetch the description one by one from the rows on page
             for (int k = 0; k < colDescriptionsdelete.Count; k++)
